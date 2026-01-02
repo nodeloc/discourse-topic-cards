@@ -4,6 +4,7 @@ import { wantsNewWindow } from "discourse/lib/intercept-click";
 import TopicExcerpt from "../components/topic-excerpt";
 import TopicMetadata from "../components/topic-metadata";
 import TopicHeader from "../components/topic-header";
+import TopicLastReply from "../components/topic-last-reply";
 import TopicOp from "../components/topic-op";
 import TopicTagsMobile from "../components/topic-tags-mobile";
 import TopicThumbnail from "../components/topic-thumbnail";
@@ -41,6 +42,7 @@ export default apiInitializer((api) => {
       <template>
         <TopicHeader @topic={{@outletArgs.topic}} />
         <TopicExcerpt @topic={{@outletArgs.topic}} />
+        <TopicLastReply @topic={{@outletArgs.topic}} />
         <TopicMetadata @topic={{@outletArgs.topic}} />
       </template>
     }
@@ -102,6 +104,11 @@ export default apiInitializer((api) => {
         const targetElement = context.event.target;
         const topic = context.topic;
 
+        // Don't intercept clicks on user links
+        if (targetElement.closest(".user-link, a[data-user-card]")) {
+          return true;
+        }
+
         const clickTargets = [
           "topic-list-data",
           "link-bottom-line",
@@ -111,6 +118,7 @@ export default apiInitializer((api) => {
           "topic-card__metadata",
           "topic-card__likes",
           "topic-card__op",
+          "topic-card__last-reply",
         ];
 
         if (site.mobileView) {

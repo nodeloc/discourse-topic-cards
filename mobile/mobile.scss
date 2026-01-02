@@ -37,18 +37,19 @@
   }
 
   &__tags {
-    display: block;
-    margin: 0 0.5rem 0.75rem;
+    display: none;
   }
 
   .main-link {
     display: grid;
     grid-template-areas:
+      "header header"
       "title title"
       "excerpt excerpt"
-      "op op"
+      "last-reply last-reply"
       "metadata metadata";
     grid-template-rows: auto auto 1fr auto auto;
+    grid-template-columns: 1fr;
     width: 100%;
     padding: 0 0.5em !important;
 
