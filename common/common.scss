@@ -6,6 +6,8 @@
 .topic-cards-list {
   display: block;
   margin-top: 1.5rem;
+  position: relative;
+  z-index: 0;
 
   .topic-list-header {
     display: none;
