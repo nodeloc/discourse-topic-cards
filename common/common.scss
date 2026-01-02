@@ -41,10 +41,6 @@
   &.selected {
     cursor: pointer;
     background-color: var(--primary-very-low);
-
-    .title {
-      text-decoration: underline;
-    }
   }
 
   &.selected {
@@ -115,15 +111,11 @@
       grid-area: title;
       display: flex;
       align-items: center;
-
-      &:hover {
-        text-decoration: underline;
-      }
     }
 
     .title {
       font-weight: 600;
-      font-size: var(--font-up-1);
+      font-size: var(--font-0);
       color: var(--primary);
 
       // limit title to 2 lines
@@ -362,6 +354,8 @@
 
       &__excerpt-text {
         margin-block: 0.5rem 1rem;
+        font-size: var(--font-down-1);
+        color: var(--primary-medium);
 
         // limit title to 2 lines
         line-height: 1.1em;
