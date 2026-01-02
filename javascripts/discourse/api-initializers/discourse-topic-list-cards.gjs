@@ -5,6 +5,7 @@ import TopicExcerpt from "../components/topic-excerpt";
 import TopicMetadata from "../components/topic-metadata";
 import TopicHeader from "../components/topic-header";
 import TopicLastReply from "../components/topic-last-reply";
+import TopicTags from "../components/topic-tags";
 import TopicOp from "../components/topic-op";
 import TopicTagsMobile from "../components/topic-tags-mobile";
 import TopicThumbnail from "../components/topic-thumbnail";
@@ -41,6 +42,7 @@ export default apiInitializer((api) => {
 
       <template>
         <TopicHeader @topic={{@outletArgs.topic}} />
+        <TopicTags @topic={{@outletArgs.topic}} />
         <TopicExcerpt @topic={{@outletArgs.topic}} />
         <TopicLastReply @topic={{@outletArgs.topic}} />
         <TopicMetadata @topic={{@outletArgs.topic}} />
