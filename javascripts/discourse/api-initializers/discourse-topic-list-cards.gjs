@@ -114,6 +114,8 @@ export default apiInitializer((api) => {
         const clickTargets = [
           "topic-list-data",
           "link-bottom-line",
+          "link-top-line",
+          "title",
           "topic-list-item",
           "topic-card__excerpt",
           "topic-card__excerpt-text",
@@ -121,6 +123,8 @@ export default apiInitializer((api) => {
           "topic-card__likes",
           "topic-card__op",
           "topic-card__last-reply",
+          "topic-card__header",
+          "topic-card__topic-tags",
         ];
 
         if (site.mobileView) {
@@ -128,9 +132,10 @@ export default apiInitializer((api) => {
         }
 
         if (clickTargets.some((t) => targetElement.closest(`.${t}`))) {
-          if (wantsNewWindow(event)) {
+          if (wantsNewWindow(context.event)) {
             return true;
           }
+          context.event.preventDefault();
           return context.navigateToTopic(topic, topic.lastUnreadUrl);
         }
       }
