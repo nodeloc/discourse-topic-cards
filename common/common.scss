@@ -6,8 +6,6 @@
 .topic-cards-list {
   display: block;
   margin-top: 1.5rem;
-  position: relative;
-  z-index: 0;
 
   .topic-list-header {
     display: none;
@@ -410,5 +408,16 @@
 
   100% {
     transform: scale(1);
+  }
+}
+
+// Fix z-index issue with more-topics nav
+.more-topics__container {
+  .nav {
+    z-index: 10;
+  }
+
+  .more-topics__lists {
+    padding-top: 3rem;
   }
 }
