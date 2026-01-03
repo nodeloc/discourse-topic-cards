@@ -8,11 +8,19 @@
     margin-left: 1em;
     margin-right: 0;
     flex-shrink: 0;
+    padding: 4px; // 给阴影留出空间
+    overflow: visible !important; // 允许阴影显示
     
     .main-thumbnail {
       border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15) !important;
+      display: block;
     }
+  }
+  
+  // 确保 hover 状态也保持阴影
+  &:hover .topic-card__thumbnail .main-thumbnail {
+    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2) !important;
   }
   
   // 隐藏没有缩略图的单元格，避免占用空间
