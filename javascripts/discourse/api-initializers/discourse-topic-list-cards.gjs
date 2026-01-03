@@ -58,7 +58,6 @@ export default apiInitializer((api) => {
               <a href={{@outletArgs.topic.url}} class="topic-card__title-link">
                 {{@outletArgs.topic.title}}
               </a>
-              <PluginOutlet @name="after-topic-status" @outletArgs={{hash topic=@outletArgs.topic}} />
             </h3>
             <TopicExcerpt @topic={{@outletArgs.topic}} />
           </div>
