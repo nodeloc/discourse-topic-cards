@@ -20,7 +20,7 @@ export default class TopicHeader extends Component {
     <div class="topic-card__header">
       {{#if (and @topic.category this.showCategory)}}
         <span class="category-info">
-          <a href="/c/{{@topic.category.slug}}/{{@topic.category.id}}" class="category-link-wrapper">
+          <a href="/n/{{@topic.category.slug}}" class="category-link-wrapper">
             {{#if @topic.category.uploaded_logo.url}}
               <span class="badge-category has-logo">
                 <img src={{@topic.category.uploaded_logo.url}} class="category-logo" alt="" />
