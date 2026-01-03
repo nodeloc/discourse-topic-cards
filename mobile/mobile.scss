@@ -35,6 +35,37 @@
     max-width: none !important;
   }
   
+  .category-link-wrapper {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    text-decoration: none;
+    color: var(--primary);
+    
+    .badge-category {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      padding: 0;
+      flex-shrink: 0;
+      overflow: hidden;
+      
+      .category-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    
+    .category-slug {
+      font-size: 0.9em;
+      font-weight: 500;
+    }
+  }
+  
   // 第二行：内容区域（标题+简介）+ 缩略图
   .topic-card__content-row {
     display: flex;

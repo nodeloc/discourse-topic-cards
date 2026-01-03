@@ -128,8 +128,8 @@ export default apiInitializer((api) => {
         const targetElement = context.event.target;
         const topic = context.topic;
 
-        // Don't intercept clicks on user links
-        if (targetElement.closest(".user-link, a[data-user-card]")) {
+        // Don't intercept clicks on user links and category links
+        if (targetElement.closest(".user-link, a[data-user-card], .category-link-wrapper, .badge-category")) {
           return true;
         }
 

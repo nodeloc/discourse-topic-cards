@@ -5,6 +5,7 @@ import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
 import formatDate from "discourse/helpers/format-date";
 import and from "truth-helpers/helpers/and";
+import icon from "discourse-common/helpers/d-icon";
 
 export default class TopicHeader extends Component {
   @service router;
@@ -19,7 +20,14 @@ export default class TopicHeader extends Component {
     <div class="topic-card__header">
       {{#if (and @topic.category this.showCategory)}}
         <span class="category-info">
-          <a href="/n/{{@topic.category.slug}}" class="category-slug">n/{{@topic.category.slug}}</a>
+          <a href="/c/{{@topic.category.slug}}/{{@topic.category.id}}" class="category-link-wrapper">
+            <span class="badge-category" style="background-color: #{{@topic.category.color}};">
+              {{#if @topic.category.uploaded_logo}}
+                <img src={{@topic.category.uploaded_logo.url}} class="category-logo" alt="" />
+              {{/if}}
+            </span>
+            <span class="category-slug">n/{{@topic.category.slug}}</span>
+          </a>
         </span>
         <span class="separator">•</span>
       {{/if}}
