@@ -1,6 +1,7 @@
 import Component from "@glimmer/component";
 import { apiInitializer } from "discourse/lib/api";
 import { wantsNewWindow } from "discourse/lib/intercept-click";
+import { hash } from "@ember/helper";
 import TopicExcerpt from "../components/topic-excerpt";
 import TopicMetadata from "../components/topic-metadata";
 import TopicHeader from "../components/topic-header";
@@ -9,6 +10,8 @@ import TopicTags from "../components/topic-tags";
 import TopicOp from "../components/topic-op";
 import TopicTagsMobile from "../components/topic-tags-mobile";
 import TopicThumbnail from "../components/topic-thumbnail";
+import PluginOutlet from "discourse/components/plugin-outlet";
+import TopicStatus from "discourse/components/topic-status";
 
 export default apiInitializer((api) => {
   const site = api.container.lookup("service:site");
@@ -51,9 +54,11 @@ export default apiInitializer((api) => {
         <div class="topic-card__content-row">
           <div class="topic-card__main-content">
             <h3 class="topic-card__title">
+              <TopicStatus @topic={{@outletArgs.topic}} @disableActions={{true}} />
               <a href={{@outletArgs.topic.url}} class="topic-card__title-link">
                 {{@outletArgs.topic.title}}
               </a>
+              <PluginOutlet @name="after-topic-status" @outletArgs={{hash topic=@outletArgs.topic}} />
             </h3>
             <TopicExcerpt @topic={{@outletArgs.topic}} />
           </div>
