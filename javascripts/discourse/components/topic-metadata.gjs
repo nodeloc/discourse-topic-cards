@@ -1,6 +1,7 @@
 import ActivityCell from "discourse/components/topic-list/item/activity-cell";
 import dIcon from "discourse/helpers/d-icon";
 import formatDate from "discourse/helpers/format-date";
+import number from "discourse/helpers/number";
 import { i18n } from "discourse-i18n";
 import LikeToggle from "./like-toggle";
 
@@ -10,7 +11,7 @@ const TopicMetadata = <template>
       <span class="topic-card__reply_count item">
         {{dIcon "comment"}}
         <span class="number">
-          {{@topic.replyCount}}
+          {{number @topic.replyCount}}
         </span>
       </span>
     {{/if}}
@@ -25,7 +26,7 @@ const TopicMetadata = <template>
       <span class="topic-card__views item">
         {{dIcon "eye"}}
         <span class="number">
-          {{@topic.views}}
+          {{number @topic.views}}
         </span>
       </span>
     {{/if}}
