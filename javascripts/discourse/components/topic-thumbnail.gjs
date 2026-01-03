@@ -1,11 +1,19 @@
 import Component from "@glimmer/component";
 import { computed } from "@ember/object";
+import { service } from "@ember/service";
 
 export default class TopicThumbnail extends Component {
+  @service site;
+  
   responsiveRatios = [1, 1.5, 2];
 
   get topic() {
     return this.args.topic || this.args.outletArgs.topic;
+  }
+  
+  // PC端103px，移动端83px
+  get displayWidth() {
+    return this.site.mobileView ? 83 : 103;
   }
 
   @computed("topic.thumbnails")
