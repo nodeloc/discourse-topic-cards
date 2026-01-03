@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { service } from "@ember/service";
 import categoryLink from "discourse/helpers/category-link";
 import UserLink from "discourse/components/user-link";
+import avatar from "discourse/helpers/avatar";
 import formatDate from "discourse/helpers/format-date";
 import and from "truth-helpers/helpers/and";
 
@@ -26,6 +27,7 @@ export default class TopicHeader extends Component {
       <span class="author-info">
         Posted by
         <UserLink @user={{@topic.creator}}>
+          {{avatar @topic.creator imageSize="tiny"}}
           <span class="username">u/{{@topic.creator.username}}</span>
         </UserLink>
       </span>

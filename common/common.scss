@@ -34,7 +34,6 @@
   gap: 1rem;
   background-color: var(--secondary);
   border-bottom: 1px solid var(--primary-low);
-  padding: 1rem 0;
   transition: background-color 0.2s ease;
 
   &:hover,
@@ -101,7 +100,6 @@
     grid-template-rows: auto auto 1fr auto;
     grid-template-columns: minmax(0, 1fr) auto;
     flex-grow: 1;
-    padding: 0 1rem 0 0 !important;
     box-sizing: border-box;
     box-shadow: none !important;
 
