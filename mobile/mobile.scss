@@ -94,7 +94,7 @@
   
   .topic-card__title {
     margin: 0;
-    font-size: 1.1em;
+    font-size: var(--d-topic-list-title-font-size);
     font-weight: 600;
     line-height: 1.3;
   }
