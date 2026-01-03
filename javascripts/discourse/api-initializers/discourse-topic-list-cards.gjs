@@ -41,11 +41,32 @@ export default apiInitializer((api) => {
       }
 
       <template>
-        <TopicHeader @topic={{@outletArgs.topic}} />
-        <TopicTags @topic={{@outletArgs.topic}} />
-        <TopicExcerpt @topic={{@outletArgs.topic}} />
-        <TopicLastReply @topic={{@outletArgs.topic}} />
-        <TopicMetadata @topic={{@outletArgs.topic}} />
+        {{! 第一行：Header + Tags }}
+        <div class="topic-card__header-row">
+          <TopicHeader @topic={{@outletArgs.topic}} />
+          <TopicTags @topic={{@outletArgs.topic}} />
+        </div>
+        
+        {{! 第二行：内容区域 + 缩略图 }}
+        <div class="topic-card__content-row">
+          <div class="topic-card__main-content">
+            <h3 class="topic-card__title">
+              <a href={{@outletArgs.topic.url}} class="topic-card__title-link">
+                {{@outletArgs.topic.title}}
+              </a>
+            </h3>
+            <TopicExcerpt @topic={{@outletArgs.topic}} />
+          </div>
+          <div class="topic-card__thumb-wrapper">
+            <TopicThumbnail @topic={{@outletArgs.topic}} />
+          </div>
+        </div>
+        
+        {{! 第三行：最后回复和 Metadata }}
+        <div class="topic-card__footer-row">
+          <TopicLastReply @topic={{@outletArgs.topic}} />
+          <TopicMetadata @topic={{@outletArgs.topic}} />
+        </div>
       </template>
     }
   );
@@ -86,13 +107,14 @@ export default apiInitializer((api) => {
 
   api.registerValueTransformer("topic-list-columns", ({ value: columns }) => {
     if (enableCards()) {
-      columns.add("thumbnail", { item: TopicThumbnail }, { before: "topic" });
+      // 移除独立的缩略图列，改为在 outlet 中渲染
+      // columns.add("thumbnail", { item: TopicThumbnail }, { before: "topic" });
 
       if (site.mobileView) {
         columns.add(
           "tags-mobile",
           { item: TopicTagsMobile },
-          { before: "thumbnail" }
+          { before: "topic" }
         );
       }
     }

@@ -1,26 +1,100 @@
-// 将缩略图移到右边
+// 新的三行布局结构
 .topic-card {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   
-  .topic-card__thumbnail {
-    order: 2; // 移到右边
-    margin-left: 1em;
-    margin-right: 0;
-    flex-shrink: 0;
-    padding: 4px; // 给阴影留出空间
-    overflow: visible !important; // 允许阴影显示
+  // 隐藏原生的标题，我们在 main-content 里重新渲染
+  .main-link {
+    display: block !important;
+  }
+  
+  .link-top-line {
+    display: none !important;
+  }
+  
+  .link-bottom-line {
+    display: none !important;
+  }
+  
+  // 第一行：Header + Tags
+  .topic-card__header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5em;
+  }
+  
+  // 第二行：内容区域（标题+简介）+ 缩略图
+  .topic-card__content-row {
+    display: flex;
+    gap: 1em;
+    margin-bottom: 0.5em;
+  }
+  
+  .topic-card__main-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  
+  .topic-card__title {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  
+  .topic-card__title-link {
+    color: var(--primary);
+    text-decoration: none;
     
-    .main-thumbnail {
-      border-radius: 4px;
-      box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.15) !important;
-      display: block;
+    &:hover {
+      color: var(--primary-medium);
+    }
+    
+    &:visited {
+      color: var(--primary-high);
     }
   }
   
-  // 确保 hover 状态也保持阴影
+  .topic-card__thumb-wrapper {
+    flex-shrink: 0;
+    overflow: visible;
+  }
+  
+  .topic-card__thumbnail {
+    display: block;
+    overflow: visible;
+    padding: 4px;
+    margin: -4px;
+    
+    .main-thumbnail {
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+      display: block;
+      width: 103px !important;
+      height: 77px !important;
+      object-fit: cover;
+    }
+  }
+  
+  // 第三行：Footer（LastReply + Metadata）
+  .topic-card__footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  // Metadata 始终靠右
+  .topic-card__metadata {
+    margin-left: auto;
+  }
+  
+  // hover 时增强阴影效果
   &:hover .topic-card__thumbnail .main-thumbnail {
-    box-shadow: 0 0 6px 2px rgba(0, 0, 0, 0.2) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
   }
   
   // 隐藏没有缩略图的单元格，避免占用空间
@@ -28,25 +102,24 @@
     display: none;
   }
   
-  .main-link {
-    order: 1; // 内容在左边
-    flex: 1;
-    min-width: 0;
-  }
-  
   // 确保最后回复信息显示
   .topic-card__last-reply {
     display: flex;
     align-items: center;
     gap: 0.5em;
-    margin-top: 1em;
+    margin-top: 0.5em;
     font-size: var(--font-down-1);
     color: var(--primary-medium);
     
     .avatar {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
     }
+  }
+  
+  // 调整 metadata 位置和样式
+  .topic-card__metadata {
+    margin-top: 0.5em;
   }
   
   // 隐藏不需要的列

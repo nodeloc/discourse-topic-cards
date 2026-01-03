@@ -10,7 +10,7 @@ const TopicLastReply = <template>
       <UserLink @user={{@topic.lastPosterUser}}>
         <span class="username">u/{{@topic.lastPosterUser.username}}</span>
       </UserLink>
-      <span class="time">replied {{formatDate @topic.bumpedAt format="tiny"}}</span>
+      <span class="time">{{formatDate @topic.bumpedAt format="tiny"}}</span>
     </div>
   {{/if}}
 </template>;

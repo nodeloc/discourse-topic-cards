@@ -74,19 +74,17 @@ export default class TopicThumbnail extends Component {
   }
 
   <template>
-    <td class={{if this.hasThumbnail "topic-card__thumbnail" "no-thumbnail"}}>
-      <a href={{this.url}}>
-        {{#if this.hasThumbnail}}
-          <img
-            class="main-thumbnail"
-            src={{this.fallbackSrc}}
-            srcset={{this.srcSet}}
-            width={{this.width}}
-            height={{this.height}}
-            loading="lazy"
-          />
-        {{/if}}
+    {{#if this.hasThumbnail}}
+      <a href={{this.url}} class="topic-card__thumbnail">
+        <img
+          class="main-thumbnail"
+          src={{this.fallbackSrc}}
+          srcset={{this.srcSet}}
+          width={{this.width}}
+          height={{this.height}}
+          loading="lazy"
+        />
       </a>
-    </td>
+    {{/if}}
   </template>
 }

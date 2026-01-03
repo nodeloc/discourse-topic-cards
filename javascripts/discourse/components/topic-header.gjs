@@ -19,13 +19,11 @@ export default class TopicHeader extends Component {
     <div class="topic-card__header">
       {{#if (and @topic.category this.showCategory)}}
         <span class="category-info">
-          {{categoryLink @topic.category}}
           <a href="/n/{{@topic.category.slug}}" class="category-slug">n/{{@topic.category.slug}}</a>
         </span>
         <span class="separator">•</span>
       {{/if}}
       <span class="author-info">
-        Posted by
         <UserLink @user={{@topic.creator}}>
           {{avatar @topic.creator imageSize="tiny"}}
           <span class="username">u/{{@topic.creator.username}}</span>
