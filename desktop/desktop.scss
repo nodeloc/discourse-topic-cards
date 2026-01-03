@@ -8,6 +8,16 @@
     margin-left: 1em;
     margin-right: 0;
     flex-shrink: 0;
+    
+    .main-thumbnail {
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+  }
+  
+  // 隐藏没有缩略图的单元格，避免占用空间
+  .no-thumbnail {
+    display: none;
   }
   
   .main-link {
