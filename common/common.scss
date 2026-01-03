@@ -2,6 +2,39 @@
   --d-border-radius-large: 20px;
 }
 
+// Reddit-style rounded buttons
+.btn,
+.d-button,
+button {
+  border-radius: 9999px !important; // 全圆角（椭圆形）
+}
+
+.btn-small,
+.btn-mini {
+  border-radius: 9999px !important;
+}
+
+// 标签也使用圆角
+.discourse-tag,
+.discourse-tags .discourse-tag {
+  border-radius: 9999px !important;
+  padding: 0.25em 0.75em !important;
+}
+
+// 输入框使用圆角
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea,
+.select-kit .select-kit-header {
+  border-radius: 9999px !important;
+}
+
+textarea {
+  border-radius: 16px !important; // textarea用稍小的圆角
+}
+
 // list
 .topic-cards-list {
   display: block;
