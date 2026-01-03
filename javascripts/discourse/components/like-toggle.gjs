@@ -82,7 +82,7 @@ export default class LikeToggle extends Component {
       type="button"
       disabled={{not this.canLike}}
       title={{if
-        (this.canLike)
+        this.canLike
         (i18n (themePrefix "like_toggle.like"))
         (i18n (themePrefix "like_toggle.like_disabled"))
       }}
