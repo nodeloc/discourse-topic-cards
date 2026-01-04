@@ -12,6 +12,7 @@ import TopicTagsMobile from "../components/topic-tags-mobile";
 import TopicThumbnail from "../components/topic-thumbnail";
 import PluginOutlet from "discourse/components/plugin-outlet";
 import TopicStatus from "discourse/components/topic-status";
+import TopicPostBadges from "discourse/components/topic-post-badges";
 
 export default apiInitializer((api) => {
   const site = api.container.lookup("service:site");
@@ -58,6 +59,11 @@ export default apiInitializer((api) => {
               <a href={{@outletArgs.topic.url}} class="topic-card__title-link">
                 {{@outletArgs.topic.title}}
               </a>
+              <TopicPostBadges
+                @unreadPosts={{@outletArgs.topic.unread_posts}}
+                @unseen={{@outletArgs.topic.unseen}}
+                @url={{@outletArgs.topic.lastUnreadUrl}}
+              />
             </h3>
             <TopicExcerpt @topic={{@outletArgs.topic}} />
           </div>
