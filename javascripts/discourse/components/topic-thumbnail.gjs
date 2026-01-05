@@ -11,9 +11,13 @@ export default class TopicThumbnail extends Component {
     return this.args.topic || this.args.outletArgs.topic;
   }
   
-  // PC端103px，移动端83px
+  // PC端103x77，移动端83x62
   get displayWidth() {
     return this.site.mobileView ? 83 : 103;
+  }
+
+  get displayHeight() {
+    return this.site.mobileView ? 62 : 77;
   }
 
   @computed("topic.thumbnails")
@@ -21,14 +25,16 @@ export default class TopicThumbnail extends Component {
     return !!this.topic.thumbnails;
   }
 
-  @computed("topic.thumbnails", "displayWidth")
+  @computed("topic.thumbnails", "displayWidth", "displayHeight")
   get srcSet() {
     const srcSetArray = [];
 
     this.responsiveRatios.forEach((ratio) => {
-      const target = ratio * this.displayWidth;
+      const targetWidth = Math.round(ratio * this.displayWidth);
+      const targetHeight = Math.round(ratio * this.displayHeight);
+      
       const match = this.topic.thumbnails.find(
-        (t) => t.url && t.max_width === target
+        (t) => t.url && t.max_width === targetWidth && t.max_height === targetHeight
       );
       if (match) {
         srcSetArray.push(`${match.url} ${ratio}x`);
@@ -59,13 +65,14 @@ export default class TopicThumbnail extends Component {
     return this.original.height;
   }
 
-  @computed("topic.thumbnails")
+  @computed("topic.thumbnails", "displayWidth", "displayHeight")
   get fallbackSrc() {
     const largeEnough = this.topic.thumbnails.filter((t) => {
       if (!t.url) {
         return false;
       }
-      return t.max_width > this.displayWidth * this.responsiveRatios.lastObject;
+      return t.max_width > this.displayWidth * this.responsiveRatios.lastObject &&
+             t.max_height > this.displayHeight * this.responsiveRatios.lastObject;
     });
 
     if (largeEnough.lastObject) {
