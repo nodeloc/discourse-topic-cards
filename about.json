@@ -6,11 +6,12 @@
   "component": true,
   "modifiers": {
     "topic_thumbnail_sizes": [
-      [200, 200],
-      [300, 300],
-      [400, 400],
-      [600, 600],
-      [800, 800]
+      [83, 83],
+      [103, 103],
+      [125, 125],
+      [155, 155],
+      [166, 166],
+      [206, 206]
     ],
     "serialize_topic_excerpts": true,
     "serialize_topic_op_likes_data": true
