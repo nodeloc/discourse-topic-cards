@@ -293,7 +293,7 @@ textarea {
         }
 
         .time::before {
-          content: "•";
+          content: "\2022";
           margin-right: 0.3rem;
           opacity: 0.6;
         }
