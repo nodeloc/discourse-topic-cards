@@ -1,18 +1,16 @@
 import Component from "@glimmer/component";
+import { trustHTML } from "@ember/template";
+import TopicPostBadges from "discourse/components/topic-post-badges";
+import TopicStatus from "discourse/components/topic-status";
 import { apiInitializer } from "discourse/lib/api";
 import { wantsNewWindow } from "discourse/lib/intercept-click";
-import { hash } from "@ember/helper";
 import TopicExcerpt from "../components/topic-excerpt";
-import TopicMetadata from "../components/topic-metadata";
 import TopicHeader from "../components/topic-header";
 import TopicLastReply from "../components/topic-last-reply";
+import TopicMetadata from "../components/topic-metadata";
 import TopicTags from "../components/topic-tags";
-import TopicOp from "../components/topic-op";
 import TopicTagsMobile from "../components/topic-tags-mobile";
 import TopicThumbnail from "../components/topic-thumbnail";
-import PluginOutlet from "discourse/components/plugin-outlet";
-import TopicStatus from "discourse/components/topic-status";
-import TopicPostBadges from "discourse/components/topic-post-badges";
 
 export default apiInitializer((api) => {
   const site = api.container.lookup("service:site");
@@ -57,7 +55,7 @@ export default apiInitializer((api) => {
             <h3 class="topic-card__title">
               <TopicStatus @topic={{@outletArgs.topic}} @disableActions={{true}} />
               <a href={{@outletArgs.topic.url}} class="topic-card__title-link">
-                {{@outletArgs.topic.title}}
+                {{trustHTML @outletArgs.topic.fancyTitle}}
               </a>
               <TopicPostBadges
                 @unreadPosts={{@outletArgs.topic.unread_posts}}
