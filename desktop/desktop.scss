@@ -237,6 +237,11 @@
     font-size: var(--font-0);
     color: var(--primary);
     word-break: break-all;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__description {

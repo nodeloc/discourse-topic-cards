@@ -119,9 +119,9 @@ export default class CategoryCardPopup extends Component {
                   {{/if}}
                 </span>
               {{/if}}
-              <span class="category-popup-card__name">
+              <a href="/n/{{@category.slug}}" class="category-popup-card__name">
                 n/{{@category.slug}}
-              </span>
+              </a>
             </div>
             {{#if @category.description_text}}
               <p class="category-popup-card__description">
