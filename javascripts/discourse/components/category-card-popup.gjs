@@ -38,8 +38,8 @@ export default class CategoryCardPopup extends Component {
       this._hideTimer = null;
     }
     const rect = event.currentTarget.getBoundingClientRect();
-    this.popupTop = rect.bottom + 8;
-    this.popupLeft = rect.left;
+    this.popupTop = rect.bottom + window.scrollY + 8;
+    this.popupLeft = rect.left + window.scrollX;
     this.isVisible = true;
   }
 

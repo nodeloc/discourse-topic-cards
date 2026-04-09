@@ -181,7 +181,7 @@
 }
 
 .category-popup-card {
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   width: 300px;
   background: var(--secondary);
