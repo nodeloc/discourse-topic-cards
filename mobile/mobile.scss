@@ -97,6 +97,9 @@
     font-size: var(--d-topic-list-title-font-size);
     font-weight: 600;
     line-height: 1.3;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    min-width: 0;
   }
   
   .topic-card__title-link {
