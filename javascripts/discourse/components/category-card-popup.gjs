@@ -1,15 +1,23 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
 import { on } from "@ember/modifier";
+import { action } from "@ember/object";
 import { cancel, later } from "@ember/runloop";
-import dIcon from "discourse-common/helpers/d-icon";
+import dIcon from "discourse/helpers/d-icon";
+import DiscourseURL from "discourse/lib/url";
 
 export default class CategoryCardPopup extends Component {
   @tracked isVisible = false;
   @tracked popupTop = 0;
   @tracked popupLeft = 0;
   _hideTimer = null;
+
+  willDestroy() {
+    super.willDestroy(...arguments);
+    if (this._hideTimer) {
+      cancel(this._hideTimer);
+    }
+  }
 
   get bannerStyle() {
     const bg = this.args.category?.uploaded_background?.url;
@@ -45,10 +53,14 @@ export default class CategoryCardPopup extends Component {
 
   @action
   scheduleHide() {
-    this._hideTimer = later(this, () => {
-      this.isVisible = false;
-      this._hideTimer = null;
-    }, 100);
+    this._hideTimer = later(
+      this,
+      () => {
+        this.isVisible = false;
+        this._hideTimer = null;
+      },
+      100
+    );
   }
 
   @action
@@ -59,11 +71,10 @@ export default class CategoryCardPopup extends Component {
     }
   }
 
-  willDestroy() {
-    super.willDestroy(...arguments);
-    if (this._hideTimer) {
-      cancel(this._hideTimer);
-    }
+  @action
+  navigate(event) {
+    event.preventDefault();
+    DiscourseURL.routeTo(`/n/${this.args.category.slug}`);
   }
 
   <template>
@@ -72,7 +83,11 @@ export default class CategoryCardPopup extends Component {
       {{on "mouseenter" this.show}}
       {{on "mouseleave" this.scheduleHide}}
     >
-      <a href="/n/{{@category.slug}}" class="category-link-wrapper">
+      <a
+        href="/n/{{@category.slug}}"
+        class="category-link-wrapper"
+        {{on "click" this.navigate}}
+      >
         {{#if @category.uploaded_logo.url}}
           <span class="badge-category has-logo">
             <img
@@ -100,7 +115,10 @@ export default class CategoryCardPopup extends Component {
           {{on "mouseenter" this.cancelHide}}
           {{on "mouseleave" this.scheduleHide}}
         >
-          <div class="category-popup-card__banner" style={{this.bannerStyle}}></div>
+          <div
+            class="category-popup-card__banner"
+            style={{this.bannerStyle}}
+          ></div>
           <div class="category-popup-card__body">
             <div class="category-popup-card__header">
               {{#if @category.uploaded_logo.url}}
@@ -119,7 +137,11 @@ export default class CategoryCardPopup extends Component {
                   {{/if}}
                 </span>
               {{/if}}
-              <a href="/n/{{@category.slug}}" class="category-popup-card__name">
+              <a
+                href="/n/{{@category.slug}}"
+                class="category-popup-card__name"
+                {{on "click" this.navigate}}
+              >
                 n/{{@category.slug}}
               </a>
             </div>
