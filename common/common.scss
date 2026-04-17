@@ -446,3 +446,8 @@ textarea {
     padding-top: 3rem;
   }
 }
+
+.category-popup-card {
+  animation: float-up 200ms ease both;
+  transform-origin: top left;
+}
