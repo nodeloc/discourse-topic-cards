@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 :root {
   --d-border-radius-large: 20px;
 }
@@ -293,7 +295,7 @@ textarea {
         }
 
         .time::before {
-          content: "\2022";
+          content: "\2022 ";
           margin-right: 0.3rem;
           opacity: 0.6;
         }
