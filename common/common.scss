@@ -414,6 +414,21 @@ textarea {
   }
 }
 
+// In card mode, hide the original featured icon from link-top-line
+// (we re-render it inside .topic-card__title to match card layout)
+.topic-card .featured-topic-list-icon:not(.topic-card__featured-icon) {
+  display: none;
+}
+
+// Align the featured icon vertically with the title text
+.topic-card__title .topic-card__featured-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 0.3em;
+  vertical-align: middle;
+}
+
 // remove fixed with and heat color from activity column
 .topic-list .age,
 .topic-list .activity {
